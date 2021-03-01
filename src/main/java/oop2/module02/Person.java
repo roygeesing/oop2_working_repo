@@ -1,5 +1,6 @@
 package oop2.module02;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -96,5 +97,21 @@ public class Person {
 		this.height = height;
 	}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+        Person person = (Person) o;
+        return age == person.age &&
+                Double.compare(person.weight, weight) == 0 &&
+                Double.compare(person.height, height) == 0 &&
+                Arrays.equals(friends, person.friends);
+    }
 
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(age, weight, height);
+        result = 31 * result + Arrays.hashCode(friends);
+        return result;
+    }
 }
