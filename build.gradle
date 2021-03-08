@@ -35,3 +35,6 @@ test {
         events "passed", "skipped", "failed"
     }
 }
+tasks.withType(JavaCompile) {
+    options.failOnError(false)
+}
